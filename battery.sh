@@ -36,6 +36,8 @@ function get_battery_percentage() {
 	echo "$battery_percentage"
 }
 
+action=$1
+
 if [ -z "$action" ]; then
 	if [ ! -f $visudo_path ]; then
 		echo "Please run battery visudo first"
