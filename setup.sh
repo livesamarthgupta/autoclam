@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get smc source and build it
-tempfolder=~/.battery-tmp
+tempfolder=~/.autoclam-tmp
 binfolder=/usr/local/bin
 mkdir -p $tempfolder
 
@@ -22,17 +22,14 @@ sudo chmod u+x $binfolder/smc
 autoclamfolder="$tempfolder/battery"
 echo -e "\nCloning autoclam repository"
 git clone --depth 1 https://github.com/livesamarthgupta/autoclam.git $autoclamfolder &> /dev/null
-echo "Writing script to $binfolder/battery"
-sudo cp $autoclamfolder/battery.sh $binfolder/battery
-sudo cp $autoclamfolder/battery.sh ~/Applications/autoclam
+echo "Writing script to $binfolder/autoclam"
+sudo cp $autoclamfolder/battery.sh $binfolder/autoclam
 # sudo cp -R $autoclamfolder/autoclam.app ~/Applications/autoclam.app
-sudo chmod 755 $binfolder/battery
-sudo chmod u+x $binfolder/battery
-sudo chmod 755 ~/Applications/autoclam
-sudo chmod u+x ~/Applications/autoclam
+sudo chmod 755 $binfolder/autoclam
+sudo chmod u+x $binfolder/autoclam
 
 # Run visudo
-battery visudo
+autoclam visudo
 
 # Remove tempfiles
 cd ../..
@@ -40,4 +37,4 @@ echo -e "\nRemoving temp folder $tempfolder"
 rm -rf $tempfolder
 echo -e "\nSmc binary built"
 
-echo -e "\n🎉 autoclam app installed. Add autoclam app to login items"
+echo -e "\n🎉 autoclam app installed. Run \"autoclam\" to enable/disable."

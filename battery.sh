@@ -44,16 +44,13 @@ if [ -z "$action" ]; then
 		exit 1;
 	fi
 
-	while [ true ]; do
-		clamshellmode=`ioreg -r -k AppleClamshellState -d 4 | grep AppleClamshellState | head -1 | grep Yes`
-		ischarging=$(is_smc_charging_on)
-		if [[ $clamshellmode && $ischarging ]]; then
-			disable_charging
-		elif [[ -z $clamshellmode && -z $ischarging ]]; then
-			enable_charging
-		fi
-		sleep 30
-	done
+	clamshellmode=`ioreg -r -k AppleClamshellState -d 4 | grep AppleClamshellState | head -1 | grep Yes`
+	ischarging=$(is_smc_charging_on)
+	if [[ $clamshellmode && $ischarging ]]; then
+		disable_charging
+	elif [[ -z $clamshellmode && -z $ischarging ]]; then
+		enable_charging
+	fi
 fi
 
 # Visudo message
