@@ -19,11 +19,12 @@ sudo mv $smcfolder/smc-command/smc $binfolder
 sudo chmod u+x $binfolder/smc
 
 # Write battery function as executable
-batteryfolder="$tempfolder/battery"
-echo -e "\nCloning battery repository"
-git clone --depth 1 https://github.com/livesamarthgupta/autoclam.git $batteryfolder &> /dev/null
+autoclamfolder="$tempfolder/battery"
+echo -e "\nCloning autoclam repository"
+git clone --depth 1 https://github.com/livesamarthgupta/autoclam.git $autoclamfolder &> /dev/null
 echo "Writing script to $binfolder/battery"
-sudo cp $batteryfolder/battery.sh $binfolder/battery
+sudo cp $autoclamfolder/battery.sh $binfolder/battery
+sudo cp -R $autoclamfolder/autoclam.app /Application/autoclam.app
 sudo chmod 755 $binfolder/battery
 sudo chmod u+x $binfolder/battery
 
@@ -33,4 +34,4 @@ echo -e "\nRemoving temp folder $tempfolder"
 rm -rf $tempfolder
 echo -e "\nSmc binary built"
 
-echo -e "\n🎉 Battery tool installed. Type \"battery\" for gaining battery priviliges."
+echo -e "\n🎉 autoclam tool installed. Type \"battery\" for gaining battery priviliges. Add autoclam to login items"
