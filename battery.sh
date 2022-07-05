@@ -66,3 +66,14 @@ if [[ "$action" == "visudo" ]]; then
 	sudo cat $visudo_path
 	exit 0
 fi
+
+# Uninstall 
+if [[ "$action" == "uninstall" ]]; then
+	echo "This will enable charging, and remove the `smc` and `autoclam` tool"
+	echo "Press any key to continue"
+    read
+    enable_charging
+    sudo rm $visudo_path
+    sudo rm -v "$binfolder/smc" "$binfolder/battery"
+	exit 0
+fi
