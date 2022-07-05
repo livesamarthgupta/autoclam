@@ -59,49 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>#!/bin/bash
-
-visudo_path=/private/etc/sudoers.d/battery
-
-function enable_charging() {
-	sudo smc -k CH0B -w 00
-	sudo smc -k CH0C -w 00
-}
-
-function disable_charging() {
-	sudo smc -k CH0B -w 02
-	sudo smc -k CH0C -w 02
-}
-
-function is_smc_charging_on() {
-	hex_status=$( smc -k CH0B -r | awk '{print $4}' | sed s:\):: )
-	if [[ "$hex_status" == "00" ]]; then
-		echo "ok"
-	else
-		echo ""
-	fi
-}
-
-function get_battery_percentage() {
-	battery_percentage=`pmset -g batt | tail -n1 | awk '{print $3}' | sed s:\%\;::`
-	echo "$battery_percentage"
-}
-
-if [ ! -f $visudo_path ]; then
-	echo "Please run battery first"
-	exit 1;
-fi
-
-while [ true ]; do
-	clamshellmode=`ioreg -r -k AppleClamshellState -d 4 | grep AppleClamshellState | head -1 | grep Yes`
-	ischarging=$(is_smc_charging_on)
-	if [[ $clamshellmode &amp;&amp; $ischarging ]]; then
-		disable_charging
-	elif [[ -z $clamshellmode &amp;&amp; -z $ischarging ]]; then
-		enable_charging
-	fi
-	sleep 300
-done</string>
+					<string>/usr/local/bin/battery</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -214,7 +172,7 @@ done</string>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>769.000000:684.000000</string>
+				<string>529.000000:662.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
