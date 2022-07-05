@@ -24,9 +24,12 @@ echo -e "\nCloning autoclam repository"
 git clone --depth 1 https://github.com/livesamarthgupta/autoclam.git $autoclamfolder &> /dev/null
 echo "Writing script to $binfolder/battery"
 sudo cp $autoclamfolder/battery.sh $binfolder/battery
-sudo cp -R $autoclamfolder/autoclam.app ~/Applications/autoclam.app
+sudo cp $autoclamfolder/battery.sh ~/Applications/autoclam
+# sudo cp -R $autoclamfolder/autoclam.app ~/Applications/autoclam.app
 sudo chmod 755 $binfolder/battery
 sudo chmod u+x $binfolder/battery
+sudo chmod 755 ~/Applications/autoclam
+sudo chmod u+x ~/Applications/autoclam
 
 # Run visudo
 battery visudo
